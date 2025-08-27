@@ -5,8 +5,8 @@ A thin FastAPI layer that exposes OpenAI-compatible endpoints and proxies to Pol
 ## Features
 - /v1/models aggregated + domain-specific: /v1/models/text, /v1/models/image, /v1/models/tts (voices)
 - /v1/chat/completions and /v1/completions (non-streaming)
-- /v1/images/generations (returns b64_json)
-- /v1/audio/speech (TTS) with voices
+- /v1/images/generations (returns b64_json)   -   Untested
+- /v1/audio/speech (TTS) with voices          -   Untested
 - Optional Bearer auth and per-IP rate limiting
 - CORS enabled (configurable)
 
