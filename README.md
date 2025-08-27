@@ -1,12 +1,12 @@
 # Pollinations OpenAI-Compatible Proxy (FastAPI)
 
-A thin FastAPI layer that exposes OpenAI-compatible endpoints and proxies to Pollinations services for text, image, and audio (TTS). Works with existing OpenAI SDKs/clients.
+A thin FastAPI layer that exposes OpenAI-compatible endpoints and proxies to Pollinations services (https://pollinations.ai/) for text, image, and audio (TTS). Works with existing OpenAI SDKs/clients.
 
 ## Features
 - /v1/models aggregated + domain-specific: /v1/models/text, /v1/models/image, /v1/models/tts (voices)
 - /v1/chat/completions and /v1/completions (non-streaming)
-- /v1/images/generations (returns b64_json)   - Untested
-- /v1/audio/speech (TTS) with voices          - Untested
+- /v1/images/generations (returns b64_json)   -   Untested
+- /v1/audio/speech (TTS) with voices          -   Untested
 - Optional Bearer auth and per-IP rate limiting
 - CORS enabled (configurable)
 
@@ -22,6 +22,12 @@ Environment variables (see .env.example):
 - RATE_LIMIT_RPM: Requests per minute per IP. Default: 60. Set to 0 to disable.
 - UPSTREAM_TEXT_BASE, UPSTREAM_IMAGE_BASE, UPSTREAM_AUDIO_BASE: Override upstream URLs.
 - LOG_LEVEL: INFO|DEBUG|WARNING. Default: INFO.
+
+## LIMITATIONS:
+Pollinations Tier based API compatibility not added yet and certain models are locked behind that.
+The model lists are found here:
+Text Generation models: https://text.pollinations.ai/models
+Image Generation models: https://image.pollinations.ai/models
 
 ## Local development
 
