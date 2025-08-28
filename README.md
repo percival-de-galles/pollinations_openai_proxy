@@ -24,10 +24,39 @@ Environment variables (see .env.example):
 - LOG_LEVEL: INFO|DEBUG|WARNING. Default: INFO.
 
 ## LIMITATIONS:
-Pollinations Tier based API compatibility not added yet and certain models are locked behind that.
+Pollinations Tier based API compatibility not added yet and certain models are locked behind that. <br>
 The model lists are found here:
-Text Generation models: https://text.pollinations.ai/models
-Image Generation models: https://image.pollinations.ai/models
+- Text Generation models: https://text.pollinations.ai/models
+- Image Generation models: https://image.pollinations.ai/models <br>
+
+Or you can refer to this for model list (from https://pollinations.ai/llms.txt):
+```
+Model: openai - OpenAI GPT-4.1-nano (supports text and image inputs)
+Model: openai-large - OpenAI GPT-4.1 mini (supports text and image inputs)
+Model: openai-reasoning - OpenAI o4-mini (reasoning-focused model)
+Model: qwen-coder - Qwen 2.5 Coder 32B (code-focused model)
+Model: llama - Llama 3.3 70B
+Model: llamascout - Llama 4 Scout 17B
+Model: mistral - Mistral Small 3 (supports text and image inputs)
+Model: unity - Unity Mistral Large (uncensored, supports text and image inputs)
+Model: midijourney - Midijourney (music generation focused)
+Model: rtist - Rtist (creative writing focused)
+Model: searchgpt - SearchGPT (search-augmented model)
+Model: evil - Evil (uncensored model with text and image inputs)
+Model: deepseek-reasoning - DeepSeek-R1 Distill Qwen 32B (reasoning-focused)
+Model: deepseek-reasoning-large - DeepSeek R1 - Llama 70B (reasoning-focused)
+Model: phi - Phi-4 Instruct (supports text, image, and audio inputs)
+Model: llama-vision - Llama 3.2 11B Vision (supports text and image inputs)
+Model: gemini - Gemini 2.5 Flash Preview (supports text, image, and audio inputs/outputs)
+Model: hormoz - Hormoz 8b
+Model: hypnosis-tracy - Hypnosis Tracy 7B (supports text and audio inputs/outputs)
+Model: deepseek - DeepSeek-V3
+Model: sur - Sur AI Assistant (Mistral-based, supports text and image inputs)
+Model: openai-audio - OpenAI GPT-4o-audio-preview (supports text, image, and audio inputs/outputs)
+Model: flux - Latest stable diffusion model
+Model: turbo - Fast image generation model
+```
+
 
 ## Local development
 
