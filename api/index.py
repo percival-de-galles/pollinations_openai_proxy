@@ -35,7 +35,7 @@ app.add_middleware(GZipMiddleware, minimum_size=1024)
 logging.basicConfig(level=os.getenv("LOG_LEVEL", "INFO"))
 logger = logging.getLogger("pollinations-proxy")
 
-# Rate limiter: per-IP sliding window using deque (O(1) append/pop)
+# Rate limiter: per-IP sliding window using deque
 _rate_bucket: Dict[str, deque] = {}
 
 # Shared HTTPX client with HTTP/2, connection pooling, retries
@@ -62,7 +62,6 @@ def _rate_limit(request: Request):
     window = 60.0
     dq = _rate_bucket.setdefault(ip, deque())
     cutoff = now - window
-    # prune old timestamps
     while dq and dq[0] < cutoff:
         dq.popleft()
     if len(dq) >= RATE_LIMIT_RPM:
@@ -82,11 +81,11 @@ def now_unix() -> int:
 
 @app.on_event("startup")
 async def on_startup():
+    """Vercel may cold-start; init client on each boot."""
     global _client
     if _client is None:
         limits = httpx.Limits(max_keepalive_connections=100, max_connections=200)
         transport = httpx.AsyncHTTPTransport(retries=2, http2=True)
-        # httpx requires a default or all four values; include pool timeout too
         timeout = httpx.Timeout(120.0, connect=10.0, read=120.0, write=30.0, pool=10.0)
         _client = httpx.AsyncClient(limits=limits, transport=transport, timeout=timeout, headers={
             "User-Agent": "pollinations-proxy/0.1",
@@ -415,7 +414,6 @@ async def audio_speech(request: Request, body: Dict[str, Any], authorization: Op
                     if chunk:
                         yield chunk
         except httpx.HTTPError as e:
-            # Convert to HTTPException to surface status properly
             raise HTTPException(status_code=502, detail=f"Upstream error: {e}")
 
     return StreamingResponse(audio_stream(), media_type=mime)

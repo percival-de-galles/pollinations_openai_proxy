@@ -24,5 +24,6 @@ EXPOSE 8000
 # Healthcheck on root
 HEALTHCHECK --interval=30s --timeout=5s --retries=5 CMD curl -f http://localhost:8000/ || exit 1
 
-# Run with uvicorn
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Runtime tuning: uvloop + httptools, configurable workers
+ENV UVICORN_WORKERS=1
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port 8000 --loop uvloop --http httptools --workers ${UVICORN_WORKERS:-1}"]
